@@ -11,9 +11,9 @@ function App() {
   const [lists, setLists] = React.useState(null);
   const [visibleNewCreate, setVisible] = React.useState(true);
   const [activeCreditId, setActiveCredit] = React.useState(null);
-
+  // "http://localhost:3001/lists"
   React.useEffect(() => {
-    axios.get("http://localhost:3001/lists").then(({ data }) => {
+    axios.get("/lists").then(({ data }) => {
       setLists(data);
     });
   }, []);

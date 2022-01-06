@@ -21,9 +21,7 @@ function NewCredit({ addCredit }) {
         return;
       }
     }
-    axios
-      .post("http://localhost:3001/lists", credit)
-      .then(({ data }) => addCredit(data));
+    axios.post("/lists", credit).then(({ data }) => addCredit(data));
     setCredit(baseCredit);
   };
 

@@ -4,30 +4,19 @@ import "./ActiveCredit.css";
 
 function ActiveCredit({ activeCreditId, changeCredit }) {
   const [activeCredit, setActiveCredit] = React.useState(null);
-  const inputLabels = [
-    "Product Name",
-    "Min Amount",
-    "Max Amount",
-    "Min Term",
-    "Max Term",
-    "Annual Interest Rate",
-  ];
+
   React.useEffect(() => {
-    axios
-      .get("http://localhost:3001/lists/" + activeCreditId)
-      .then(({ data }) => {
-        setActiveCredit(data);
-      });
+    axios.get("/lists/" + activeCreditId).then(({ data }) => {
+      setActiveCredit(data);
+    });
   }, [activeCreditId]);
 
   const editTitle = (e) => {
     e.preventDefault();
 
-    axios
-      .patch("http://localhost:3001/lists/" + activeCreditId, activeCredit)
-      .catch(() => {
-        alert("Не удалось отправить запрос");
-      });
+    axios.patch("/lists/" + activeCreditId, activeCredit).catch(() => {
+      alert("Не удалось отправить запрос");
+    });
     // console.log(activeCredit);
     changeCredit(activeCredit);
   };
